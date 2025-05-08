@@ -200,14 +200,24 @@ module.exports = db;
 //             VisitorID INT NOT NULL,
 //             name VARCHAR(255) NOT NULL,
 //             email VARCHAR(255) NOT NULL,
-//             contact INT(12) NOT NULL,
-//             date DATE NOT NULL,
+//             contact VARCHAR(255) NOT NULL,
+//             date VARCHAR(255) NOT NULL,
 //             timeSlot VARCHAR(255) NOT NULL,
 //             guide VARCHAR(255) NOT NULL,
 //             FOREIGN KEY (ParkGuideID) REFERENCES park_guide(ParkGuideID),
 //             FOREIGN KEY (VisitorID) REFERENCES visitor(VisitorID)
-//         )
+//         );
 //     `;
+//     db.query(sql, (err, result) => {
+//         if (err) {
+//             console.error("❌ Error creating table:", err);
+//             res.status(500).send("Error creating table");
+//         } else {
+//             console.log("✅ Table booking_parkguide created");
+//             res.send("Table created successfully");
+//         }
+//     });
+// });
 //     db.query(sql, (err, result) => {
 //         if (err) throw err;
 //         console.log(result);
