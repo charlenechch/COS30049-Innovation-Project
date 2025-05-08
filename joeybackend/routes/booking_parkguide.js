@@ -4,12 +4,14 @@ const bcrypt = require('bcrypt');
 const db = require('../config/db');
 const bodyParser = require('body-parser');
 const { encrypt, decrypt } = require('../utils/crypto');
+const verifyToken = require('../middleware/verifyToken');
+const authorizeRoles = require('../middleware/authorizeRoles');
 
 const app = express();
 app.use(bodyParser.json());
 
 // CREATE 
-router.post('/', (req, res) => {
+router.post('/', verifyToken, authorizeRoles('Visitor'), (req, res) => {
   const { name, email, contact, date, timeSlot, guide } = req.body;
 
   console.log('Received data:', { name, email, contact, date, timeSlot, guide });
@@ -61,10 +63,13 @@ router.post('/', (req, res) => {
       const encryptedName = encrypt(name.trim());
       const encryptedEmail = encrypt(email.trim());
       const encryptedGuide = encrypt(guide.trim());
+      const encryptedContact = encrypt(contact.trim());
+      const encryptedDate = encrypt(date.trim());
+      const encryptedTimeSlot = encrypt(timeSlot.trim());
       
       db.query(
         insertSQL,
-        [parkGuideId, visitorId, encryptedName, encryptedEmail, contact, date, timeSlot, encryptedGuide],
+        [parkGuideId, visitorId, encryptedName, encryptedEmail, encryptedContact, encryptedDate, encryptedTimeSlot, encryptedGuide],
         (err, result) => {
           if (err) {
             console.error('❌ Error inserting booking:', err);
