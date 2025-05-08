@@ -51,7 +51,13 @@ router.get('/all', (req, res) => {
     if (err) {
       return res.status(500).json({ message: "Error fetching all park guide data", error: err });
     }
-    res.status(200).json(result);
+
+    const decryptedResult = result.map(guide => ({
+      ParkGuideID: guide.ParkGuideID,
+      Fullname: decrypt(guide.Fullname)
+    }));
+
+    res.status(200).json(decryptedResult);
   });
 });
 
