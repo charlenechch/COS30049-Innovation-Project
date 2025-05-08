@@ -1,0 +1,46 @@
+# ===============================
+# Node.js and React Native Monorepo
+# ===============================
+
+# === Common ===
+**/node_modules/         # Ignore node_modules in all folders
+.env                     # Environment variables
+.env.*.local             # Optional env variants
+*.log                    # Log files
+.DS_Store                # macOS system files
+Thumbs.db                # Windows system files
+*.tmp
+*.swp
+*.bak
+*.orig
+*.old
+
+# === IDE / Editor folders ===
+.vscode/
+.idea/
+
+# === Build / Cache folders ===
+dist/
+build/
+.cache/
+coverage/
+
+# === Backend specific ===
+joeybackend/.env
+joeybackend/dist/
+joeybackend/build/
+
+# === React Native / Expo specific ===
+joeyMobile/.expo/
+joeyMobile/.expo-shared/
+joeyMobile/android/
+joeyMobile/ios/
+joeyMobile/coverage/
+joeyMobile/web-build/
+
+# === OS Metadata ===
+._*
+
+# === Optional: Ignore package-lock if not used ===
+# package-lock.json
+# yarn.lock
