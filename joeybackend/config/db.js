@@ -41,7 +41,7 @@ module.exports = db;
 //     let sql = `
 //         CREATE TABLE visitor (
 //             VisitorID INT AUTO_INCREMENT PRIMARY KEY,
-//             Username VARCHAR(50) NOT NULL,
+//             Username VARCHAR(50) NOT NULL UNIQUE,
 //             Email VARCHAR(255) NOT NULL UNIQUE,
 //             Password VARCHAR(255) NOT NULL,
 //             Role VARCHAR(50) DEFAULT 'Visitor'
@@ -59,8 +59,8 @@ module.exports = db;
 //     let sql = `
 //         CREATE TABLE park_guide (
 //             ParkGuideID INT AUTO_INCREMENT PRIMARY KEY,
-//             Username VARCHAR(50) NOT NULL,
-//             Fullname VARCHAR (255) NOT NULL,
+//             Username VARCHAR(50) NOT NULL UNIQUE,
+//             Fullname VARCHAR (255) NOT NULL UNIQUE,
 //             Email VARCHAR(255) NOT NULL UNIQUE,
 //             Password VARCHAR(255) NOT NULL,
 //             Role VARCHAR(50) DEFAULT 'Park Guide'
@@ -78,7 +78,7 @@ module.exports = db;
 //     let sql = `
 //         CREATE TABLE admin (
 //             AdminID INT AUTO_INCREMENT PRIMARY KEY,
-//             Username VARCHAR(50) NOT NULL,
+//             Username VARCHAR(50) NOT NULL UNIQUE,
 //             Email VARCHAR(255) NOT NULL UNIQUE,
 //             Password VARCHAR(255) NOT NULL,
 //             Role VARCHAR(50) DEFAULT 'Admin'
@@ -159,7 +159,7 @@ module.exports = db;
 //     let sql = `
 //         CREATE TABLE mentor (
 //             MentorID INT PRIMARY KEY AUTO_INCREMENT,
-//             FullName VARCHAR(100) NOT NULL,
+//             FullName VARCHAR(100) NOT NULL UNIQUE,
 //             Email VARCHAR(100) NOT NULL UNIQUE,
 //             AvailabilityStatus ENUM('Available', 'Unavailable') DEFAULT 'Available'
 //         )
