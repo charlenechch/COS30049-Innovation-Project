@@ -1,4 +1,4 @@
- These are the installation for the package needed by entering the command in the terminal:
+These are the installation for the package needed by entering the command in the terminal:
 npm install @react-navigation/native
 npm install @react-navigation/bottom-tabs
 npm install @react-navigation/drawer 
