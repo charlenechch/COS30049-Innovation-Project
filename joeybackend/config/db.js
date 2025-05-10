@@ -60,10 +60,11 @@ module.exports = db;
 //         CREATE TABLE park_guide (
 //             ParkGuideID INT AUTO_INCREMENT PRIMARY KEY,
 //             Username VARCHAR(50) NOT NULL UNIQUE,
-//             Fullname VARCHAR (255) NOT NULL UNIQUE,
+//             Fullname VARCHAR (255) NOT NULL,
 //             Email VARCHAR(255) NOT NULL UNIQUE,
 //             Password VARCHAR(255) NOT NULL,
-//             Role VARCHAR(50) DEFAULT 'Park Guide'
+//             Status ENUM ('Inactive', 'Active') DEFAULT 'Inactive' NOT NULL,
+//             Role ENUM ('Trainee', 'Park Guide', 'Mentor' ) DEFAULT 'Trainee' NOT NULL
 //         )
 //     `;
 //     db.query(sql, (err, result) => {
