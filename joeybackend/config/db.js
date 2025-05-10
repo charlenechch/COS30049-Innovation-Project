@@ -249,7 +249,7 @@ module.exports = db;
 //             Hire_Date DATE NULL,
 //             License_status ENUM ('Expired', 'Active') NOT NULL, 
 //             FOREIGN KEY (ParkGuideID) REFERENCES park_guide(ParkGuideID),
-//             FOREIGN KEY (AdminID) REFERENCES admin(AdminID)
+//             FOREIGN KEY (AdminID) REFERENCES admin(AdminID),
 //             FOREIGN KEY (LicensetypeID) REFERENCES License_type(LicensetypeID)
 //         )
 //     `;
