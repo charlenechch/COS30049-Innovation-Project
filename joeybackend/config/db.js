@@ -93,7 +93,7 @@ module.exports = db;
 // });
 
 
-// // Create OTP Table
+// //Create OTP Table
 // app.get('/OTPTable', (req, res) => {
 //     let sql = `
 //         CREATE TABLE otp_verification (
@@ -115,8 +115,8 @@ module.exports = db;
 // app.get('/ModuleTable', (req, res) => {
 //     let sql = `
 //         CREATE TABLE module (
-//             Module_code VARCHAR(50) NOT NULL,
-//             Module_name VARCHAR(50) NOT NULL,
+//             Module_code VARCHAR(50) NOT NULL UNIQUE,
+//             Module_name VARCHAR(50) NOT NULL UNIQUE,
 //             Module_description VARCHAR(255),
 //             PRIMARY KEY (Module_code)
 //         )
@@ -135,12 +135,32 @@ module.exports = db;
 //         CREATE TABLE Guide_Module (
 //             ParkGuideID INT NOT NULL,
 //             AdminID INT NOT NULL,
-//             Module_Code VARCHAR(50) NOT NULL,
+//             Module_Code VARCHAR(255) NOT NULL,
 //             RegistrationStatus ENUM('Registered', 'Pending', 'Unsuccessful') NOT NULL,
 //             ProgressStatus ENUM('In Progress', 'Completed', 'Expired') NOT NULL,
 //             Result ENUM('Pass', 'Fail', 'Pending') NOT NULL,
 //             Start_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 //             Completed_Date TIMESTAMP NULL,
+//             PRIMARY KEY (ParkGuideID, Module_Code),
+//             FOREIGN KEY (ParkGuideID) REFERENCES park_guide(ParkGuideID),
+//             FOREIGN KEY (AdminID) REFERENCES admin(AdminId),
+//             FOREIGN KEY (Module_Code) REFERENCES Module(Module_Code)
+//         )
+//     `;
+//     db.query(sql, (err, result) => {
+//         if (err) throw err;
+//         console.log(result);
+//         res.send('Guide_Module table created...');
+//     });
+// });
+
+// app.get('/TrackModuleProgressTable', (req, res) => {
+//     let sql = `
+//         CREATE TABLE track_module_progress (
+//             ParkGuideID INT NOT NULL,
+//             AdminID INT NOT NULL,
+//             Module_Code VARCHAR(255) NOT NULL,
+//             percentage VARCHAR (255) NOT NULL,
 //             PRIMARY KEY (ParkGuideID, Module_Code),
 //             FOREIGN KEY (ParkGuideID) REFERENCES park_guide(ParkGuideID),
 //             FOREIGN KEY (AdminID) REFERENCES admin(AdminId),
@@ -160,7 +180,7 @@ module.exports = db;
 //     let sql = `
 //         CREATE TABLE mentor (
 //             MentorID INT PRIMARY KEY AUTO_INCREMENT,
-//             FullName VARCHAR(100) NOT NULL UNIQUE,
+//             FullName VARCHAR(100) NOT NULL,
 //             Email VARCHAR(100) NOT NULL UNIQUE,
 //             AvailabilityStatus ENUM('Available', 'Unavailable') DEFAULT 'Available'
 //         )
@@ -172,7 +192,7 @@ module.exports = db;
 //     });
 // });
 
-// // Create Booking Table
+// //Create Booking Table
 // app.get('/BookingMentorTable', (req, res) => {
 //     let sql = `
 //         CREATE TABLE booking_mentor (
@@ -201,24 +221,14 @@ module.exports = db;
 //             VisitorID INT NOT NULL,
 //             name VARCHAR(255) NOT NULL,
 //             email VARCHAR(255) NOT NULL,
-//             contact VARCHAR(255) NOT NULL,
-//             date VARCHAR(255) NOT NULL,
+//             contact INT(12) NOT NULL,
+//             date DATE NOT NULL,
 //             timeSlot VARCHAR(255) NOT NULL,
 //             guide VARCHAR(255) NOT NULL,
 //             FOREIGN KEY (ParkGuideID) REFERENCES park_guide(ParkGuideID),
 //             FOREIGN KEY (VisitorID) REFERENCES visitor(VisitorID)
-//         );
+//         )
 //     `;
-//     db.query(sql, (err, result) => {
-//         if (err) {
-//             console.error("❌ Error creating table:", err);
-//             res.status(500).send("Error creating table");
-//         } else {
-//             console.log("✅ Table booking_parkguide created");
-//             res.send("Table created successfully");
-//         }
-//     });
-// });
 //     db.query(sql, (err, result) => {
 //         if (err) throw err;
 //         console.log(result);
@@ -226,24 +236,42 @@ module.exports = db;
 //     });
 // });
 
-// // Create License Table
+// Create License Table
 // app.get('/LicenseTable', (req, res) => {
 //     let sql = `
 //         CREATE TABLE License (
 //             LicenseID INT PRIMARY KEY AUTO_INCREMENT,
 //             ParkGuideID INT NOT NULL,
 //             AdminID INT NOT NULL,
-//             License_Status ENUM('Approved', 'Pending', 'Rejected', 'Expired') NOT NULL,
-//             Approval_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//             Valid_Until DATE NOT NULL,
+//             LicensetypeID NOT NULL,
+//             Approval_status ENUM ('Approved', 'Pending', 'Rejected') NOT NULL,
+//             Expiry_date DATE NULL,
+//             Hire_Date DATE NULL,
+//             License_status ENUM ('Expired', 'Active') NOT NULL, 
 //             FOREIGN KEY (ParkGuideID) REFERENCES park_guide(ParkGuideID),
 //             FOREIGN KEY (AdminID) REFERENCES admin(AdminID)
+//             FOREIGN KEY (LicensetypeID) REFERENCES License_type(LicensetypeID)
 //         )
 //     `;
 //     db.query(sql, (err, result) => {
 //         if (err) throw err;
 //         console.log(result);
 //         res.send('License table created...');
+//     });
+// });
+
+// // Create License type Table
+// app.get('/LicenseTypeTable', (req, res) => {
+//     let sql = `
+//         CREATE TABLE License_type (
+//             LicensetypeID INT PRIMARY KEY AUTO_INCREMENT,
+//             License_type ENUM ('Bako', 'Semenggoh','Kubah', 'Tanjung Datu', 'Batang Ai' ) NOT NULL       
+//         )
+//     `;
+//     db.query(sql, (err, result) => {
+//         if (err) throw err;
+//         console.log(result);
+//         res.send('License Type table created...');
 //     });
 // });
 
@@ -288,9 +316,10 @@ module.exports = db;
 //             ScientificName VARCHAR(100) NOT NULL UNIQUE,
 //             CommonName VARCHAR(100) NOT NULL,
 //             Family VARCHAR(100) NOT NULL,
+//             Subfamily VARCHAR(100) NOT NULL,
 //             Description TEXT NOT NULL,
-//             Functions TEXT NOT NULL,
 //             Habitat TEXT NOT NULL,
+//             Distribution TEXT NOT NULL,
 //             ImageURL VARCHAR(255) NOT NULL
 //         )
 //     `;
