@@ -11,3 +11,5 @@ npm install react-native-camera
 npm install react-native-image-picker
 npx expo install react-native-maps
 npx expo install @react-native-community/datetimepicker
+
+npm install d3
