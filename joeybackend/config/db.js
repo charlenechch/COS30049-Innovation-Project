@@ -136,7 +136,7 @@ module.exports = db;
 //             ParkGuideID INT NOT NULL,
 //             AdminID INT NOT NULL,
 //             Module_Code VARCHAR(255) NOT NULL,
-//             RegistrationStatus ENUM('Registered', 'Pending', 'Unsuccessful') NOT NULL,
+//             RegistrationStatus ENUM('Registered', 'Unsuccessful') NOT NULL,
 //             ProgressStatus ENUM('In Progress', 'Completed', 'Expired') NOT NULL,
 //             Result ENUM('Pass', 'Fail', 'Pending') NOT NULL,
 //             Start_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
