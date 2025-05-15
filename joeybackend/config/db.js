@@ -214,6 +214,7 @@ module.exports = db;
 //     });
 // });
 
+// create booking guide table
 // app.get('/BookingParkGuideTable', (req, res) => {
 //     let sql = `
 //         CREATE TABLE booking_parkguide (
@@ -221,21 +222,27 @@ module.exports = db;
 //             ParkGuideID INT NOT NULL,
 //             VisitorID INT NOT NULL,
 //             name VARCHAR(255) NOT NULL,
-//             email VARCHAR(255) NOT NULL,
-//             contact INT(12) NOT NULL,
-//             date DATE NOT NULL,
+//             email VARCHAR(255) NOT NULL, //no need this
+//             contact VARCHAR(255) NOT NULL,
+//             date VARCHAR(255) NOT NULL,
 //             timeSlot VARCHAR(255) NOT NULL,
 //             guide VARCHAR(255) NOT NULL,
+//             feedbackGiven BOOLEAN DEFAULT FALSE,
 //             FOREIGN KEY (ParkGuideID) REFERENCES park_guide(ParkGuideID),
 //             FOREIGN KEY (VisitorID) REFERENCES visitor(VisitorID)
-//         )
+//         );
 //     `;
 //     db.query(sql, (err, result) => {
-//         if (err) throw err;
-//         console.log(result);
-//         res.send('Booking park guide table created...');
+//         if (err) {
+//             console.error("❌ Error creating table:", err);
+//             res.status(500).send("Error creating table");
+//         } else {
+//             console.log("✅ Table booking_parkguide created");
+//             res.send("Table created successfully");
+//         }
 //     });
 // });
+    
 
 // Create License Table
 // app.get('/LicenseTable', (req, res) => {
