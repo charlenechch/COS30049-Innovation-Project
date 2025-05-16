@@ -63,8 +63,10 @@ module.exports = db;
 //             Fullname VARCHAR (255) NOT NULL,
 //             Email VARCHAR(255) NOT NULL UNIQUE,
 //             Password VARCHAR(255) NOT NULL,
+//             Contact VARCHAR(255) NOT NULL,
 //             Status ENUM ('Inactive', 'Active') DEFAULT 'Inactive' NOT NULL,
-//             Role ENUM ('Trainee', 'Park Guide', 'Mentor' ) DEFAULT 'Trainee' NOT NULL
+//             Role VARCHAR DEFAULT 'Park Guide' NOT NULL,
+//             guide_role ENUM ('Trainee', 'Park Guide', 'Mentor' ) DEFAULT 'Trainee' NOT NULL
 //         )
 //     `;
 //     db.query(sql, (err, result) => {
@@ -273,7 +275,7 @@ module.exports = db;
 //     let sql = `
 //         CREATE TABLE License_type (
 //             LicensetypeID INT PRIMARY KEY AUTO_INCREMENT,
-//             License_type ENUM ('Bako', 'Semenggoh','Kubah', 'Tanjung Datu', 'Batang Ai' ) NOT NULL       
+//             LicenseName VARCHAR(255) NOT NULL 
 //         )
 //     `;
 //     db.query(sql, (err, result) => {
@@ -283,6 +285,13 @@ module.exports = db;
 //     });
 // });
 
+
+// INSERT INTO License_type (LicensetypeID, LicenseName) VALUES 
+//     (1, 'Bako'),
+//     (2, 'Semenggoh'),
+//     (3, 'Kubah'),
+//     (4, 'Tanjung Datu'),
+//     (5, 'Batang Ai');  
 
 // // Create Feedback Table
 // app.get('/FeedbackTable', (req, res) => {
