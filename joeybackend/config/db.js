@@ -131,19 +131,21 @@ module.exports = db;
 // });
 
 
-// // Create Guide_Module Table
+// //Create Guide_Module Table
 // app.get('/Guide_ModuleTable', (req, res) => {
 //     let sql = `
 //         CREATE TABLE Guide_Module (
 //             ParkGuideID INT NOT NULL,
 //             AdminID INT NOT NULL,
 //             Module_Code VARCHAR(255) NOT NULL,
-//             RegistrationStatus ENUM('Registered', 'Unsuccessful') NULL,
-//             PaymentStatus ENUM('Success', 'Failed') NULL,
-//             ProgressStatus ENUM('In Progress', 'Completed', 'Expired') NULL,
-//             Result ENUM('Pass', 'Failed') NULL,
-//             Start_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//             Completed_Date TIMESTAMP NULL,
+//             Course VARCHAR (255) NOT NULL,
+//             RegistrationStatus ENUM('Registered', 'Unregistered') NULL,
+//             PaymentStatus ENUM('Success', 'Fail') NULL,
+//             ProgressStatus ENUM('In Progress', 'Completed', 'Not yet unlocked') NULL,
+//             Result ENUM('Pass', 'Fail') NULL,
+//             attempt INT NULL,          
+//             Start_Date DATETIME NULL,
+//             Completed_Date DATETIME NULL,
 //             PRIMARY KEY (ParkGuideID, Module_Code),
 //             FOREIGN KEY (ParkGuideID) REFERENCES park_guide(ParkGuideID),
 //             FOREIGN KEY (AdminID) REFERENCES admin(AdminId),
